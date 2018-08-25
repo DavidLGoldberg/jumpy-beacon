@@ -6,9 +6,9 @@ const atom_1 = require("atom");
 class JumpyBeaconView {
     constructor(serializedState) {
         this.disposables = new atom_1.CompositeDisposable();
-        atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
+        this.disposables.add(atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
             this.animateBeacon(paneItem);
-        });
+        }));
     }
     animateBeacon(paneItem) {
         if (!atom.workspace.isTextEditor(paneItem)) {

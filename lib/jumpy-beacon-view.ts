@@ -9,9 +9,11 @@ export default class JumpyBeaconView {
     constructor(serializedState: any) {
         this.disposables = new CompositeDisposable();
 
-        atom.workspace.onDidStopChangingActivePaneItem((paneItem: Pane) => {
-            this.animateBeacon(paneItem);
-        });
+        this.disposables.add(
+            atom.workspace.onDidStopChangingActivePaneItem((paneItem: Pane) => {
+                this.animateBeacon(paneItem);
+            })
+        );
     }
 
     animateBeacon(paneItem: Pane) {
