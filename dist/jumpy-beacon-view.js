@@ -8,6 +8,27 @@ class JumpyBeaconView {
         this.workspaceElement = atom.views.getView(atom.workspace);
         this.disposables = new atom_1.CompositeDisposable();
         this.commands = new atom_1.CompositeDisposable();
+        atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
+            this.animateBeacon(paneItem);
+        });
+    }
+    animateBeacon(paneItem) {
+        if (!atom.workspace.isTextEditor(paneItem)) {
+            return;
+        }
+        const textEditor = paneItem;
+        const position = textEditor.getCursorScreenPosition();
+        const range = atom_1.Range(position, position);
+        const marker = textEditor.markScreenRange(range, { invalidate: 'never' });
+        const beacon = document.createElement('span');
+        beacon.classList.add('jumpy-beacon'); // For styling and tests
+        textEditor.decorateMarker(marker, {
+            item: beacon,
+            type: 'overlay'
+        });
+        setTimeout(function () {
+            marker.destroy();
+        }, 200);
     }
     // Returns an object that can be retrieved when package is activated
     serialize() { }
