@@ -2,6 +2,8 @@
 
 An Atom package that creates an ocular cue to assist with tab switching.
 
+[ ![Jumpy-Beacon in Action!][1]](https://raw.githubusercontent.com/DavidLGoldberg/jumpy-beacon/master/_images/jumpy-beacon.gif)
+
 [1]: https://raw.githubusercontent.com/DavidLGoldberg/jumpy-beacon/master/_images/jumpy-beacon.gif
 
 ## Install
