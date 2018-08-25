@@ -1,4 +1,4 @@
-default: elm typescript
+default: typescript
 
 typescript:
 	npm install
