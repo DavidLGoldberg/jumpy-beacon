@@ -3,7 +3,7 @@
   "author": "David L. Goldberg",
   "atomTestRunner": "./spec/custom-runner",
   "main": "./dist/jumpy-beacon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Atom package that creates an ocular cue to assist with tab switching",
   "keywords": [
     "visual",
