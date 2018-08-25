@@ -3,7 +3,7 @@
   "author": "David L. Goldberg",
   "atomTestRunner": "./spec/custom-runner",
   "main": "./dist/jumpy-beacon",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Ocular cue to assist with switching tabs.",
   "keywords": [
     "visual",
