@@ -5,9 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const atom_1 = require("atom");
 class JumpyBeaconView {
     constructor(serializedState) {
-        this.workspaceElement = atom.views.getView(atom.workspace);
         this.disposables = new atom_1.CompositeDisposable();
-        this.commands = new atom_1.CompositeDisposable();
         atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
             this.animateBeacon(paneItem);
         });
@@ -34,9 +32,6 @@ class JumpyBeaconView {
     serialize() { }
     // Tear down any state and detach
     destroy() {
-        if (this.commands) {
-            this.commands.dispose();
-        }
         if (this.disposables) {
             this.disposables.dispose();
         }

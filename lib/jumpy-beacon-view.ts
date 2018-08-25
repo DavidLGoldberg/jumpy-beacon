@@ -1,17 +1,13 @@
 'use babel';
 
 /* global atom */
-import { CompositeDisposable, Range, Point, Pane } from 'atom';
+import { CompositeDisposable, Range, Pane } from 'atom';
 
 export default class JumpyBeaconView {
-    workspaceElement: any;
     disposables: CompositeDisposable;
-    commands: CompositeDisposable;
 
     constructor(serializedState: any) {
-        this.workspaceElement = atom.views.getView(atom.workspace);
         this.disposables = new CompositeDisposable();
-        this.commands = new CompositeDisposable();
 
         atom.workspace.onDidStopChangingActivePaneItem((paneItem: Pane) => {
             this.animateBeacon(paneItem);
@@ -44,9 +40,6 @@ export default class JumpyBeaconView {
 
     // Tear down any state and detach
     destroy() {
-        if (this.commands) {
-            this.commands.dispose();
-        }
         if (this.disposables) {
             this.disposables.dispose();
         }
