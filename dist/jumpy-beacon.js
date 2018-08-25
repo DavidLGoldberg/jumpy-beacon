@@ -4,13 +4,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jumpy_beacon_view_1 = require("./jumpy-beacon-view");
 module.exports = {
     jumpyBeaconView: null,
-    config: {
-        color: {
-            description: 'The color of the beacon.',
-            type: 'color',
-            default: 'red',
-        }
-    },
     activate(state) {
         this.jumpyBeaconView = new jumpy_beacon_view_1.default(state.jumpyBeaconViewState);
     },
