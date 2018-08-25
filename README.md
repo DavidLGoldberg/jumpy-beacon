@@ -1,8 +1,8 @@
-# Jumpy-beacon
+# Jumpy-Beacon
 
-An Atom package that gives an ocular cue to assist in tab switching.
+An Atom package that creates an ocular cue to assist with tab switching.
 
-[1]: https://raw.githubusercontent.com/DavidLGoldberg/jumpy/master/_images/jumpy-beacon.gif
+[1]: https://raw.githubusercontent.com/DavidLGoldberg/jumpy-beacon/master/_images/jumpy-beacon.gif
 
 ## Install
 On command line:
@@ -12,32 +12,20 @@ apm install jumpy-beacon
 
 ## Notes
 
-*   Works great with or without [Jumpy](https://github.com/atom/jumpy)!
+*   Works great with or without [Jumpy](https://atom.io/packages/jumpy).
+*   I accidentally stumbled on this idea while I was first developing the beacon for [Jumpy](https://atom.io/packages/jumpy) a few years ago!
 
-## Settings
+## Config Settings
 
 None yet!
 
-### Jumpy-beacon Styles
+## Jumpy-Beacon Styles
 
-Note: Styles can be overridden in **'Atom' -> 'Open Your Stylesheet'**
-(see examples below)
+Just override the `.jumpy-beacon` class from [beacon.less](https://raw.githubusercontent.com/DavidLGoldberg/jumpy-beacon/master/styles/beacon.less)
 
-```less
-atom-text-editor {
-    .jumpy-beacon {
-        // Regular labels
-        background-color: black;
-        color: white;
-        &.high-contrast {
-            // High Contrast labels (activated in settings)
-            background-color: green;
-        }
-    }
-}
-```
+*Note*: Styles can be overridden in **'Atom' -> 'Stylesheet...'**
 
-## My other Atom package :)
+## My other Atom packages :)
 
 *   [Jumpy](https://atom.io/packages/jumpy)
 *   [Qolor](https://atom.io/packages/qolor)
