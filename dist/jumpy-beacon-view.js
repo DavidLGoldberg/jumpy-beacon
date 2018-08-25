@@ -1,0 +1,25 @@
+"use strict";
+'use babel';
+Object.defineProperty(exports, "__esModule", { value: true });
+/* global atom */
+const atom_1 = require("atom");
+class JumpyBeaconView {
+    constructor(serializedState) {
+        this.workspaceElement = atom.views.getView(atom.workspace);
+        this.disposables = new atom_1.CompositeDisposable();
+        this.commands = new atom_1.CompositeDisposable();
+    }
+    // Returns an object that can be retrieved when package is activated
+    serialize() { }
+    // Tear down any state and detach
+    destroy() {
+        if (this.commands) {
+            this.commands.dispose();
+        }
+        if (this.disposables) {
+            this.disposables.dispose();
+        }
+    }
+}
+exports.default = JumpyBeaconView;
+//# sourceMappingURL=jumpy-beacon-view.js.map

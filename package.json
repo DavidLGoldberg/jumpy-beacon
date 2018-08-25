@@ -1,0 +1,31 @@
+{
+  "name": "jumpy-beacon",
+  "author": "David L. Goldberg",
+  "atomTestRunner": "./spec/custom-runner",
+  "main": "./dist/jumpy-beacon",
+  "version": "0.1.0",
+  "description": "Ocular cue to assist with switching tabs.",
+  "keywords": [
+    "visual",
+    "comprehension",
+    "read",
+    "focus",
+    "tab",
+    "context",
+    "productivity",
+    "plugin",
+    "extension"
+  ],
+  "repository": "https://github.com/DavidLGoldberg/jumpy-beacon",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/atom": "0.0.38",
+    "atom-jasmine3-test-runner": "3.1.0",
+    "madge": "3.2.0",
+    "typescript": "2.5.3"
+  }
+}
