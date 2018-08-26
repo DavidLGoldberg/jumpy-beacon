@@ -11,10 +11,15 @@ class JumpyBeaconView {
         }));
     }
     animateBeacon(paneItem) {
+        // short circuit to not animate if not text editor:
         if (!atom.workspace.isTextEditor(paneItem)) {
             return;
         }
         const textEditor = paneItem;
+        // short circuit to not animate if cursor is 0,0 (mostly here because of new tabs):
+        if (textEditor.getCursorBufferPosition().isEqual([0, 0])) {
+            return;
+        }
         const position = textEditor.getCursorScreenPosition();
         const range = atom_1.Range(position, position);
         const marker = textEditor.markScreenRange(range, { invalidate: 'never' });
