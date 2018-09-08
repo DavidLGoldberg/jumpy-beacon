@@ -14,7 +14,8 @@
     "context",
     "productivity",
     "plugin",
-    "extension"
+    "extension",
+    "jumpy"
   ],
   "repository": "https://github.com/DavidLGoldberg/jumpy-beacon",
   "license": "MIT",
