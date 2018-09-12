@@ -6,10 +6,26 @@ const atom_1 = require("atom");
 class JumpyBeaconView {
     constructor(serializedState) {
         this.disposables = new atom_1.CompositeDisposable();
+        this.wasLastClicked = false;
+        this.disposables.add(atom.workspace.observeTextEditors((textEditor) => {
+            const cursor = textEditor.getLastCursor();
+            this.disposables.add(cursor.onDidChangePosition((event) => {
+                if (atom.config.get('jumpy-beacon.shouldBeaconPreviousCursorOnClick')) {
+                    if (this.shouldAnimate(textEditor)) {
+                        // This works strictly because of the 100ms debounce on onDidStopChangingActivePaneItem()
+                        this.animateBeacon(textEditor, event.oldScreenPosition);
+                    }
+                }
+                this.wasLastClicked = true;
+            }));
+        }));
         this.disposables.add(atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
             if (this.shouldAnimate(paneItem)) {
-                this.animateBeacon(paneItem);
+                const textEditor = paneItem; // can assert from above
+                this.animateBeacon(textEditor, textEditor.getCursorScreenPosition());
             }
+            // reset:
+            this.wasLastClicked = false;
         }));
     }
     shouldAnimate(paneItem) {
@@ -21,10 +37,12 @@ class JumpyBeaconView {
         if (textEditor.getCursorBufferPosition().isEqual([0, 0])) {
             return false;
         }
+        if (this.wasLastClicked) {
+            return false;
+        }
         return true;
     }
-    animateBeacon(textEditor) {
-        const position = textEditor.getCursorScreenPosition();
+    animateBeacon(textEditor, position) {
         const range = atom_1.Range(position, position);
         const marker = textEditor.markScreenRange(range, { invalidate: 'never' });
         const beacon = document.createElement('span');
