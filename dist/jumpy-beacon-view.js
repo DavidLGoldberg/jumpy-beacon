@@ -7,19 +7,23 @@ class JumpyBeaconView {
     constructor(serializedState) {
         this.disposables = new atom_1.CompositeDisposable();
         this.disposables.add(atom.workspace.onDidStopChangingActivePaneItem((paneItem) => {
-            this.animateBeacon(paneItem);
+            if (this.shouldAnimate(paneItem)) {
+                this.animateBeacon(paneItem);
+            }
         }));
     }
-    animateBeacon(paneItem) {
-        // short circuit to not animate if not text editor:
+    shouldAnimate(paneItem) {
         if (!atom.workspace.isTextEditor(paneItem)) {
-            return;
+            return false;
         }
         const textEditor = paneItem;
         // short circuit to not animate if cursor is 0,0 (mostly here because of new tabs):
         if (textEditor.getCursorBufferPosition().isEqual([0, 0])) {
-            return;
+            return false;
         }
+        return true;
+    }
+    animateBeacon(textEditor) {
         const position = textEditor.getCursorScreenPosition();
         const range = atom_1.Range(position, position);
         const marker = textEditor.markScreenRange(range, { invalidate: 'never' });

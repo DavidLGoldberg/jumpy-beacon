@@ -1,7 +1,7 @@
 'use babel';
 
 /* global atom */
-import { CompositeDisposable, Range, Pane } from 'atom';
+import { CompositeDisposable, Range, Pane, TextEditor } from 'atom';
 
 export default class JumpyBeaconView {
     disposables: CompositeDisposable;
@@ -11,23 +11,28 @@ export default class JumpyBeaconView {
 
         this.disposables.add(
             atom.workspace.onDidStopChangingActivePaneItem((paneItem: Pane) => {
-                this.animateBeacon(paneItem);
+                if (this.shouldAnimate(paneItem)) {
+                    this.animateBeacon(paneItem);
+                }
             })
         );
     }
 
-    animateBeacon(paneItem: Pane) {
-        // short circuit to not animate if not text editor:
+    shouldAnimate(paneItem: Pane) : boolean {
         if(!atom.workspace.isTextEditor(paneItem)) {
-            return;
+            return false;
         }
 
         const textEditor = paneItem;
         // short circuit to not animate if cursor is 0,0 (mostly here because of new tabs):
         if (textEditor.getCursorBufferPosition().isEqual([0,0])) {
-            return;
+            return false;
         }
 
+        return true;
+    }
+
+    animateBeacon(textEditor: TextEditor) : void {
         const position = textEditor.getCursorScreenPosition();
         const range = Range(position, position);
         const marker = textEditor.markScreenRange(range, { invalidate: 'never' });
