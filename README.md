@@ -31,3 +31,7 @@ Just override the `.jumpy-beacon` class from [beacon.less](https://raw.githubuse
 
 *   [Jumpy](https://atom.io/packages/jumpy)
 *   [Qolor](https://atom.io/packages/qolor)
+
+## My VS Code version of Jumpy :))
+
+*   [Jumpy2](https://marketplace.visualstudio.com/items?itemName=DavidLGoldberg.jumpy2) (Jumpy for VS Code from it's original author!)
